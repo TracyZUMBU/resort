@@ -20,7 +20,7 @@ export const Home = () => {
        </Hero>
        <Services/>
        <FeaturedRooms/>
-       <Button>hello</Button>
+       
         </>
     )
 }
