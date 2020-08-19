@@ -58,9 +58,11 @@ const RoomContext = React.createContext()
         const target = event.target
         const value = target.type === 'checkbox' ? target.checked : target.value
         const name = event.target.name
-        this.setState({
-            [name]: value
-        }, this.filterRooms)
+        this.setState(
+            {
+                [name]: value
+            }, 
+            this.filterRooms)
     }
 
     filterRooms = () => {
@@ -93,7 +95,9 @@ const RoomContext = React.createContext()
         tempRooms = tempRooms.filter(room => room.price <= price)
     
     //filter by size
-    
+    tempRooms = tempRooms.filter(
+        room => room.size >= minSize && room.size <= maxSize
+    )
 
     //filtet by breakfats
         if(breakfast){
