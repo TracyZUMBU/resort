@@ -56,7 +56,7 @@ const RoomContext = React.createContext()
 
     handleChange = event => {
         const target = event.target
-        const value = event.type === 'checkbox' ? target.checked : target.value
+        const value = target.type === 'checkbox' ? target.checked : target.value
         const name = event.target.name
         this.setState({
             [name]: value
@@ -91,8 +91,17 @@ const RoomContext = React.createContext()
         }
     // filter by price
         tempRooms = tempRooms.filter(room => room.price <= price)
-
     
+    //filter by size
+    
+
+    //filtet by breakfats
+        if(breakfast){
+            tempRooms = tempRooms.filter(room => room.breakfast === true)
+        }
+        if(pets){
+            tempRooms = tempRooms.filter(room => room.pets === true)
+        }
     // change state based on filters
         this.setState({
             sortedRooms: tempRooms
