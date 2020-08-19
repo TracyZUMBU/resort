@@ -34,7 +34,6 @@ const RoomContext = React.createContext()
             loading: false,
             price:maxPrice,
             maxPrice,
-            size:maxSize,
             maxSize
         })
     }
@@ -55,9 +54,61 @@ const RoomContext = React.createContext()
         return room
     }
 
+    handleChange = event => {
+        const target = event.target
+        const value = event.type === 'checkbox' ? target.checked : target.value
+        const name = event.target.name
+        this.setState({
+            [name]: value
+        }, this.filterRooms)
+    }
+
+    filterRooms = () => {
+        let {
+            rooms,
+            type,
+            capacity,
+            price,
+            minSize,
+            maxSize,
+            breakfast,
+            pets
+        } = this.state
+
+    //all the rooms
+        let tempRooms = [ ...rooms]
+    // transform value
+        capacity = parseInt(capacity) 
+        price = parseInt(price) 
+
+    // filter by type of room
+        if(type !== 'all'){
+            tempRooms = tempRooms.filter(room => room.type === type)
+        }
+    // filter by capacity
+        if(capacity !== 1){
+            tempRooms = tempRooms.filter(room => room.capacity >= capacity)
+        }
+    // filter by price
+        tempRooms = tempRooms.filter(room => room.price <= price)
+
+    
+    // change state based on filters
+        this.setState({
+            sortedRooms: tempRooms
+        })
+
+    }
+
+
     render() {
         return (
-            <RoomContext.Provider value={{...this.state, getRoom:this.getRoom}}>
+            <RoomContext.Provider 
+            value={{
+                ...this.state, 
+                getRoom:this.getRoom, 
+                handleChange: this.handleChange
+            }}>
                 {this.props.children}
             </RoomContext.Provider>
         );

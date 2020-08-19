@@ -2,7 +2,9 @@ import React from 'react'
 import Room from '../components/Room'
 
 export default function RoomList({rooms}) {
+    
     if(rooms.lenght === 0){
+        console.log(rooms)
         return (
             <div className="empty-search">
                 <h3>Unfortunately no rooms matched your search</h3>
