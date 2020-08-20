@@ -3,6 +3,7 @@ import {RoomContext} from "../context"
 import Loading from "./Loading"
 import Room from './Room'
 import Title from "./Title"
+
 export default class FeaturedRooms extends Component {
     static contextType = RoomContext
     render() {
@@ -14,7 +15,7 @@ export default class FeaturedRooms extends Component {
         return (
             <section className="features-rooms"> 
                 <Title title="featured rooms"/>
-                <div className="featured-room-center">
+                <div className="featured-rooms-center">
                     {loading ? <Loading /> : rooms}
                 </div>
             </section>    
