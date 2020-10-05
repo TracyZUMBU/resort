@@ -13,7 +13,7 @@ export const Rooms = () => {
         <Hero hero="roomsHero">
             <Banner title="our rooms">
                 <Link to="/" className="btn-primary">
-                    return homehh
+                    return home
                 </Link>
             </Banner>
         </Hero>
